@@ -9,7 +9,7 @@
   netboot = {
     network.wan="ens6";
     network.lan="ens5";
-    image=./targetconfig.nix;
+    image=./worker-config.nix;
   };
 
   users.users.root.password="root";

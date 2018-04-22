@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ##############################################################
-# find directory of this script
+# change to directory of this script to allow relative paths
 ##############################################################
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 ##############################################################
 # stop on error
@@ -37,7 +37,7 @@ master(){
    -device virtio-net,netdev=user,addr=6          -netdev user,id=user
 }
 
-slave(){
+worker(){
   ##############################################################
   # run a netboot client
   ##############################################################
@@ -47,10 +47,10 @@ slave(){
 
 
 ##############################################################
-# add "slave" to start a slave instead of the netboot master
+# add "worker" to start a worker instead of the netboot master
 ##############################################################
-if [ "${1:-x}" = "slave" ]; then
-  slave
+if [ "${1:-x}" = "worker" ]; then
+  worker
 else
   master
 fi
